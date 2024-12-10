@@ -1,0 +1,46 @@
+type token =
+    VAR
+  | VAL
+  | TIMES
+  | THEN
+  | SUP
+  | SEMICOLON
+  | RPAREN
+  | RETURN
+  | REQ
+  | PLUS
+  | OR
+  | NEQ
+  | MOD
+  | MINUS
+  | LPAREN
+  | LEQ
+  | INIT
+  | INF
+  | INCR
+  | IF
+  | IDENT of string
+  | FUN
+  | FN
+  | EQ
+  | EOF
+  | END
+  | ELSE
+  | ELIF
+  | DOT
+  | DIV
+  | CST of int
+  | COMMA
+  | COL of int
+  | BEGIN
+  | ASSIGN
+  | ARROW
+  | AND
+val menhir_begin_marker : int
+val xv_prog : Ast.program
+val xv_nonempty_list_SEMICOLON_ : unit list
+val xv_list_decla_ : Ast.program
+val xv_list_SEMICOLON_ : unit list
+val xv_expr : Ast.exp
+val xv_decla : Ast.decl
+val menhir_end_marker : int
