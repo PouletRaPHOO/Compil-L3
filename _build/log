@@ -2,7 +2,7 @@
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Shared cache location: /home/pouletraphoo/.cache/dune/db
-# Workspace root: /home/pouletraphoo/Cours/ENS/Info/Compil/Projets/Koka
+# Workspace root: /home/pouletraphoo/Cours/ENS/Info/Compil/Projets/Compil-L3
 # Auto-detected concurrency: 4
 # Dune context:
 #  { name = "default"
@@ -14,16 +14,94 @@
 #  ; installed_env =
 #      map
 #        { "INSIDE_DUNE" :
-#            "/home/pouletraphoo/Cours/ENS/Info/Compil/Projets/Koka/_build/default"
+#            "/home/pouletraphoo/Cours/ENS/Info/Compil/Projets/Compil-L3/_build/default"
 #        ; "OCAML_COLOR" : "always"
 #        ; "OPAMCOLOR" : "always"
 #        }
 #  ; instrument_with = []
 #  }
-$ /home/pouletraphoo/.opam/default/bin/ocamlc.opt -config > /tmp/dune_3b2949_output
+$ /home/pouletraphoo/.opam/default/bin/ocamlc.opt -config > /tmp/dune_065979_output
 $ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamllex -q -o lexer.ml lexer.mll)
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/menhir --explain --dump parser.mly --base parser --infer-write-query parser__mock.ml.mock)
+> File "parser.mly", line 20, characters 7-10:
+> Warning: the token AND is unused.
+> File "parser.mly", line 22, characters 7-12:
+> Warning: the token ARROW is unused.
+> File "parser.mly", line 22, characters 18-24:
+> Warning: the token ASSIGN is unused.
+> File "parser.mly", line 15, characters 13-18:
+> Warning: the token BEGIN is unused.
+> File "parser.mly", line 13, characters 13-16:
+> Warning: the token COL is unused.
+> File "parser.mly", line 15, characters 7-12:
+> Warning: the token COMMA is unused.
+> File "parser.mly", line 18, characters 24-27:
+> Warning: the token DIV is unused.
+> File "parser.mly", line 23, characters 7-10:
+> Warning: the token DOT is unused.
+> File "parser.mly", line 21, characters 20-24:
+> Warning: the token ELIF is unused.
+> File "parser.mly", line 21, characters 15-19:
+> Warning: the token ELSE is unused.
+> File "parser.mly", line 15, characters 19-22:
+> Warning: the token END is unused.
+> File "parser.mly", line 19, characters 23-25:
+> Warning: the token EQ is unused.
+> File "parser.mly", line 26, characters 11-13:
+> Warning: the token FN is unused.
+> File "parser.mly", line 26, characters 7-10:
+> Warning: the token FUN is unused.
+> File "parser.mly", line 21, characters 7-9:
+> Warning: the token IF is unused.
+> File "parser.mly", line 18, characters 32-36:
+> Warning: the token INCR is unused.
+> File "parser.mly", line 19, characters 7-10:
+> Warning: the token INF is unused.
+> File "parser.mly", line 22, characters 13-17:
+> Warning: the token INIT is unused.
+> File "parser.mly", line 19, characters 11-14:
+> Warning: the token LEQ is unused.
+> File "parser.mly", line 17, characters 7-13:
+> Warning: the token LPAREN is unused.
+> File "parser.mly", line 18, characters 12-17:
+> Warning: the token MINUS is unused.
+> File "parser.mly", line 18, characters 28-31:
+> Warning: the token MOD is unused.
+> File "parser.mly", line 19, characters 26-29:
+> Warning: the token NEQ is unused.
+> File "parser.mly", line 20, characters 11-13:
+> Warning: the token OR is unused.
+> File "parser.mly", line 19, characters 19-22:
+> Warning: the token REQ is unused.
+> File "parser.mly", line 24, characters 7-13:
+> Warning: the token RETURN is unused.
+> File "parser.mly", line 17, characters 14-20:
+> Warning: the token RPAREN is unused.
+> File "parser.mly", line 19, characters 15-18:
+> Warning: the token SUP is unused.
+> File "parser.mly", line 21, characters 10-14:
+> Warning: the token THEN is unused.
+> File "parser.mly", line 18, characters 18-23:
+> Warning: the token TIMES is unused.
+> File "parser.mly", line 16, characters 7-10:
+> Warning: the token VAL is unused.
+> File "parser.mly", line 16, characters 11-14:
+> Warning: the token VAR is unused.
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamldep.opt -modules -impl kokac.ml) > _build/default/.kokac.eobjs/kokac.impl.d
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamldep.opt -modules -impl parser__mock.ml.mock) > _build/default/.kokac.eobjs/parser__mock.impl.d
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamldep.opt -modules -impl ast.ml) > _build/default/.kokac.eobjs/ast.impl.d
 $ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamldep.opt -modules -impl lexer.ml) > _build/default/.kokac.eobjs/lexer.impl.d
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamlc.opt -g -bin-annot -I .kokac.eobjs/byte -I /home/pouletraphoo/.opam/default/lib/graphics -no-alias-deps -opaque -o .kokac.eobjs/byte/ast.cmo -c -impl ast.ml)
+$ (cd _build/.sandbox/5fcc023525861527e4da29310e6bde80/default && /home/pouletraphoo/.opam/default/bin/ocamlc.opt -g -I .kokac.eobjs/byte -I /home/pouletraphoo/.opam/default/lib/graphics -short-paths -i -impl parser__mock.ml.mock) > _build/.sandbox/5fcc023525861527e4da29310e6bde80/default/parser__mock.mli.inferred
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/menhir --explain --dump parser.mly --base parser --infer-read-reply parser__mock.mli.inferred)
+> Warning: one state has shift/reduce conflicts.
+> Warning: one shift/reduce conflict was arbitrarily resolved.
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamldep.opt -modules -intf parser.mli) > _build/default/.kokac.eobjs/parser.intf.d
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamldep.opt -modules -impl parser.ml) > _build/default/.kokac.eobjs/parser.impl.d
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamlc.opt -g -bin-annot -I .kokac.eobjs/byte -I /home/pouletraphoo/.opam/default/lib/graphics -no-alias-deps -opaque -o .kokac.eobjs/byte/parser.cmi -c -intf parser.mli)
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamlopt.opt -g -I .kokac.eobjs/byte -I .kokac.eobjs/native -I /home/pouletraphoo/.opam/default/lib/graphics -intf-suffix .ml -no-alias-deps -opaque -o .kokac.eobjs/native/ast.cmx -c -impl ast.ml)
 $ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamlc.opt -g -bin-annot -I .kokac.eobjs/byte -I /home/pouletraphoo/.opam/default/lib/graphics -no-alias-deps -opaque -o .kokac.eobjs/byte/lexer.cmo -c -impl lexer.ml)
 > File "lexer.mll", line 120, characters 33-48:
 > Error: Unbound value lastendcont_tbl
 [2]
+$ (cd _build/default && /home/pouletraphoo/.opam/default/bin/ocamlopt.opt -g -I .kokac.eobjs/byte -I .kokac.eobjs/native -I /home/pouletraphoo/.opam/default/lib/graphics -intf-suffix .ml -no-alias-deps -opaque -o .kokac.eobjs/native/parser.cmx -c -impl parser.ml)

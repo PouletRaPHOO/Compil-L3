@@ -1,0 +1,193 @@
+State 0:
+## Known stack suffix:
+##
+## LR(1) items:
+prog' -> . prog [ # ]
+## Transitions:
+-- On SEMICOLON shift to state 1
+-- On prog shift to state 3
+-- On list(SEMICOLON) shift to state 4
+## Reductions:
+-- On IDENT EOF CST
+--   reduce production list(SEMICOLON) ->
+
+State 1:
+## Known stack suffix:
+## SEMICOLON
+## LR(1) items:
+list(SEMICOLON) -> SEMICOLON . list(SEMICOLON) [ IDENT EOF CST ]
+## Transitions:
+-- On SEMICOLON shift to state 1
+-- On list(SEMICOLON) shift to state 2
+## Reductions:
+-- On IDENT EOF CST
+--   reduce production list(SEMICOLON) ->
+
+State 2:
+## Known stack suffix:
+## SEMICOLON list(SEMICOLON)
+## LR(1) items:
+list(SEMICOLON) -> SEMICOLON list(SEMICOLON) . [ IDENT EOF CST ]
+## Transitions:
+## Reductions:
+-- On IDENT EOF CST
+--   reduce production list(SEMICOLON) -> SEMICOLON list(SEMICOLON)
+
+State 3:
+## Known stack suffix:
+## prog
+## LR(1) items:
+prog' -> prog . [ # ]
+## Transitions:
+## Reductions:
+-- On #
+--   accept prog
+
+State 4:
+## Known stack suffix:
+## list(SEMICOLON)
+## LR(1) items:
+prog -> list(SEMICOLON) . list(decla) EOF [ # ]
+## Transitions:
+-- On IDENT shift to state 5
+-- On CST shift to state 6
+-- On list(decla) shift to state 7
+-- On expr shift to state 9
+-- On decla shift to state 15
+## Reductions:
+-- On EOF
+--   reduce production list(decla) ->
+
+State 5:
+## Known stack suffix:
+## IDENT
+## LR(1) items:
+expr -> IDENT . [ SEMICOLON PLUS ]
+## Transitions:
+## Reductions:
+-- On SEMICOLON PLUS
+--   reduce production expr -> IDENT
+
+State 6:
+## Known stack suffix:
+## CST
+## LR(1) items:
+expr -> CST . [ SEMICOLON PLUS ]
+## Transitions:
+## Reductions:
+-- On SEMICOLON PLUS
+--   reduce production expr -> CST
+
+State 7:
+## Known stack suffix:
+## list(SEMICOLON) list(decla)
+## LR(1) items:
+prog -> list(SEMICOLON) list(decla) . EOF [ # ]
+## Transitions:
+-- On EOF shift to state 8
+## Reductions:
+
+State 8:
+## Known stack suffix:
+## list(SEMICOLON) list(decla) EOF
+## LR(1) items:
+prog -> list(SEMICOLON) list(decla) EOF . [ # ]
+## Transitions:
+## Reductions:
+-- On #
+--   reduce production prog -> list(SEMICOLON) list(decla) EOF
+
+State 9:
+## Known stack suffix:
+## expr
+## LR(1) items:
+decla -> expr . nonempty_list(SEMICOLON) [ IDENT EOF CST ]
+expr -> expr . PLUS expr [ SEMICOLON PLUS ]
+## Transitions:
+-- On SEMICOLON shift to state 10
+-- On PLUS shift to state 12
+-- On nonempty_list(SEMICOLON) shift to state 14
+## Reductions:
+
+State 10:
+## Known stack suffix:
+## SEMICOLON
+## LR(1) items:
+nonempty_list(SEMICOLON) -> SEMICOLON . [ IDENT EOF CST ]
+nonempty_list(SEMICOLON) -> SEMICOLON . nonempty_list(SEMICOLON) [ IDENT EOF CST ]
+## Transitions:
+-- On SEMICOLON shift to state 10
+-- On nonempty_list(SEMICOLON) shift to state 11
+## Reductions:
+-- On IDENT EOF CST
+--   reduce production nonempty_list(SEMICOLON) -> SEMICOLON
+
+State 11:
+## Known stack suffix:
+## SEMICOLON nonempty_list(SEMICOLON)
+## LR(1) items:
+nonempty_list(SEMICOLON) -> SEMICOLON nonempty_list(SEMICOLON) . [ IDENT EOF CST ]
+## Transitions:
+## Reductions:
+-- On IDENT EOF CST
+--   reduce production nonempty_list(SEMICOLON) -> SEMICOLON nonempty_list(SEMICOLON)
+
+State 12:
+## Known stack suffix:
+## expr PLUS
+## LR(1) items:
+expr -> expr PLUS . expr [ SEMICOLON PLUS ]
+## Transitions:
+-- On IDENT shift to state 5
+-- On CST shift to state 6
+-- On expr shift to state 13
+## Reductions:
+
+State 13:
+## Known stack suffix:
+## expr PLUS expr
+## LR(1) items:
+expr -> expr . PLUS expr [ SEMICOLON PLUS ]
+expr -> expr PLUS expr . [ SEMICOLON PLUS ]
+## Transitions:
+-- On PLUS shift to state 12
+## Reductions:
+-- On SEMICOLON PLUS
+--   reduce production expr -> expr PLUS expr
+** Conflict on PLUS
+
+State 14:
+## Known stack suffix:
+## expr nonempty_list(SEMICOLON)
+## LR(1) items:
+decla -> expr nonempty_list(SEMICOLON) . [ IDENT EOF CST ]
+## Transitions:
+## Reductions:
+-- On IDENT EOF CST
+--   reduce production decla -> expr nonempty_list(SEMICOLON)
+
+State 15:
+## Known stack suffix:
+## decla
+## LR(1) items:
+list(decla) -> decla . list(decla) [ EOF ]
+## Transitions:
+-- On IDENT shift to state 5
+-- On CST shift to state 6
+-- On list(decla) shift to state 16
+-- On expr shift to state 9
+-- On decla shift to state 15
+## Reductions:
+-- On EOF
+--   reduce production list(decla) ->
+
+State 16:
+## Known stack suffix:
+## decla list(decla)
+## LR(1) items:
+list(decla) -> decla list(decla) . [ EOF ]
+## Transitions:
+## Reductions:
+-- On EOF
+--   reduce production list(decla) -> decla list(decla)
+
